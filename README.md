@@ -1,1 +1,64 @@
-# R401
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>i_safe</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .numero {
+      font-size: 3em;
+      color: #333;
+      margin-bottom: 10px;
+    }
+    .tempo {
+      color: #888;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="numero" id="numero">------</div>
+    <div class="tempo" id="tempo">Próxima atualização em 20s</div>
+  </div>
+
+  <script>
+    const numeroEl = document.getElementById('numero');
+    const tempoEl = document.getElementById('tempo');
+    let tempoRestante = 20;
+
+    function gerarNumero() {
+      const numero = Math.floor(100000 + Math.random() * 900000);
+      numeroEl.textContent = numero;
+      tempoRestante = 20;
+    }
+
+    function atualizarTempo() {
+      tempoRestante--;
+      tempoEl.textContent = `Próxima atualização em ${tempoRestante}s`;
+      if (tempoRestante === 0) {
+        gerarNumero();
+      }
+    }
+
+    gerarNumero();
+    setInterval(atualizarTempo, 1000);
+  </script>
+</body>
+</html>
